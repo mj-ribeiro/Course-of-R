@@ -120,6 +120,50 @@ for (i in x) {
 
 
 
+### LEI DOS GRANDES NÚMEROS
+
+n = 1000
+x = rnorm(n)
+c = 0
+
+
+for (i in x){
+  print(i)
+  if (i < -1){
+    print('x menor que -1')
+
+  }else if (i < 1) {
+    print('x menor que 1 e maior que -1')
+    c = 1 + c
+  }else{
+    print('x é maior que 1')
+    
+  }
+  
+}
+
+
+
+c/n    #a probabilidade dos números estarem entre -1 e 1
+
+
+
+
+
+# OUTRA FORMA DE FAZER
+
+c = 0
+n = 100000
+for (i in rnorm(n)){
+  if (i > -1 & i < 1){
+  c = 1 + c
+  }
+}
+
+print(c/n)
+
+
+
 
 
 
