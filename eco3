@@ -1,0 +1,104 @@
+
+library(vars)
+
+library(readxl)
+
+base = read_excel("C:/Users/user/Downloads/eco3/base.xlsx")
+View(base)
+
+summary(base)
+
+head(base)
+
+attach(base)
+
+rm(i)   #remove um item do workspace
+
+
+
+#### vou criar variáveis
+
+
+idepib = ide/pib
+base$idepib = idepib
+
+idepibhc = idepib*hc
+base$idepibhc = idepibhc
+
+plot(year, idepib, type='ltw')
+
+
+## teste de estacionariedade
+
+library(tseries)
+
+adf.test(hc)
+kpss.test(ide, null="Trend")
+
+
+###### Primeira diferença
+
+
+cresppc = diff(cresppc)
+idepib = diff(idepib)
+hc= diff(hc)
+fbcf= diff(fbcf)
+lab=diff(lab)
+idepibhc=diff(idepibhc)
+hc= diff(hc)
+
+
+
+
+df1 = data.frame(cresppc, idepib , hc, fbcf, lab, idepibhc)
+
+
+
+attach(df1)
+
+
+library(tidyverse)
+df1= drop_na(df1)
+
+adf.test(lab)
+
+
+kpss.test(df1$idepib, null="Trend")
+
+
+
+
+summary(hc)
+
+summary(df1$hc)
+summary(base$hc)
+
+
+
+
+df1
+
+model1 = VARselect(df1, lag.max=2, type="both")
+
+model1
+
+
+model2 = VAR(df1, lag.max=2, type="const", ic="AIC")
+model2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
