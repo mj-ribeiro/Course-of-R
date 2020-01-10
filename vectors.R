@@ -99,10 +99,12 @@ for (i in 1:n){
 d == c
 
 
-?print
+?print  # help in R
 
 
-seq(1, 10, length.out=200)
+seq(1, 10, length.out=200) # 200 numbers between 1 and 10
+
+
 
 
 
