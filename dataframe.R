@@ -3,7 +3,16 @@ setwd("D:/Git projects/R course")
 
 df = read.csv(file.choose())
 
-# df1 = read.csv('demog.csv') other form to import dataset in diretory
+df = read.csv('demog.csv') #other form to import dataset in diretory
+
+
+df$nv = 0
+
+
+attach(df)
+
+
+
 
 ################# caracteristics of data frame
 
@@ -49,17 +58,11 @@ df$Birth.rate[10]
 df$new = df$Birth.rate * df$Internet.users
 df$new = NULL  # Drop new variable
 
-df$nv = 0
-
-
-attach(df)
-
 
 
 
 # FILTERING Data frames
 
-n = nrow(df)
 
 for (i in 1: n) {
   if (Birth.rate[i] > 20 ){
@@ -77,10 +80,9 @@ df[ filter, ]    # show all countries with  Birth.rate < 20
 
 
 
-
-
 #### categorizing variables by income
 
+n = nrow(df)
 
 for (c in 1:n) {
   if(Income.Group[c] == 'High income'){
@@ -93,7 +95,6 @@ for (c in 1:n) {
     df$nv[c] = 3
   }
 }
-
 
 
 
@@ -121,12 +122,9 @@ df[ Country.Code== 'BRA', "Birth.rate" ]
 
 
 
-
-
 ############ plots
-
-
 library(ggplot2)
+
 qplot(data=df, x=Internet.users)
 qplot(data=df, x=Income.Group, y=Birth.rate, size=I(3), colour=I("blue"))
 
@@ -155,9 +153,9 @@ for (c in 1:4){
 
 
 
-
-qplot(data=df, x=Internet.users, y=Birth.rate, size=I(3), colour=Income.Group) ##other form
-
+windows()
+qplot(data=df, x=Internet.users, y=Birth.rate, size=I(3), colour=Income.Group, asp=2/3  ,xlab = 'Usuários de internet', ylab = 'Taxa de natalidade') ##other form
+?qplot
 
 
       
