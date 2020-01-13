@@ -218,8 +218,19 @@ p + geom_point() + xlim(50, 100) + ylim(50,100) # take points between 50 and 100
 #------------------------ THEMES
 
 
+s = k + geom_point(size=3) + facet_grid(.~year, scales = 'free')
 
-
+windows()
+s + xlab('crítica da audiência') +
+  ylab('Rottem tomatoes') +
+  theme(axis.title.x = element_text(colour = 'blue', size=30),
+        axis.title.y = element_text(colour = 'green', size=30),
+        axis.text.x = element_text(size=10),
+        axis.text.y = element_text(size=10),
+        legend.title = element_text(size=20),
+        legend.text = element_text(size=15),
+        legend.position = c(1,1),
+        legend.justification = c(1,1))
 
 
 
