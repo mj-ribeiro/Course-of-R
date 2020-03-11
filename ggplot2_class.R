@@ -3,8 +3,8 @@ setwd("D:/Git projects/R course")
 ### update R
 
 #install.packages("installr")   # Library
-library (installr)
-updateR()
+#library (installr)
+#updateR()
 
 library(ggplot2)
 
