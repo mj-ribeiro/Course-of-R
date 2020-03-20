@@ -1,3 +1,7 @@
+#########################################################################
+#                              IBOV
+#########################################################################
+
 
 library(tseries)
 library(timeSeries)
@@ -12,19 +16,39 @@ library(mFilter)
 #---------- Get IBOV 
 
 
-getSymbols("^BVSP", src="yahoo", from="2010-01-01")
+getSymbols("^BVSP", src="yahoo", from="2007-01-01")
+getSymbols('^VIX', src='yahoo', from= '2007-01-01')
 
 dates = index(BVSP)
 
+vix = VIX[ ,4]
 
-IBOV = BVSP[1:2505 , 4]
-#rownames(IBOV)= dates
-#View(IBOV)
+IBOV = BVSP[, 4]
+
+
+index = is.na(IBOV) == F
+
+IBOV = IBOV[index, ]
+
+
+###################### Plots
+
+
+
+plot(vix, scale.frac = 0.6,main="", 
+     xlab="",ylab="",axes=TRUE)
+mtext("Date", side=1, line=3, font=2)
+mtext("VIX", side=2, line=3, font=2)
+mtext("Evolution of VIX", side=3, line=1, font=2, cex=1.2)
+
+
 
 
 plot(IBOV, type='l')
 
+
 #------ STATS
+
 
 basicStats(IBOV)
 
