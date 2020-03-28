@@ -78,6 +78,33 @@ D
 
 
 
+#--------------- Linear regression
+
+
+
+x1 = c(2, 1, 5, 7, 8, 0, 2, 1)
+x2 = c(11, 2, 4, 5, 78, 1, 2, 9)
+
+x = cbind(x1, x2)
+
+y = c(1, 5, 2, 3, 7, 32, 2, 0)
+
+
+l = 0.5
+
+library(matlib) # to use inv function
+
+
+b = inv(t(x)%*%x)%*%t(x)%*%y   # inv(t(x)) inverse of tranpose x matrix
+b
+
+
+
+reg = lm(y ~x1 + x2 - 1)  # -1 ommit intercept
+
+summary(reg)
+
+
 
 
 

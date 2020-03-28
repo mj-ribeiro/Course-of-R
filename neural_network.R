@@ -31,32 +31,19 @@ step = function(soma){
 
 
 
-# sum function
-
-
-
-sum = function(rg){
-  s1 = rg%*%pes
-  return(step(s1))
-    
-}
-
-step(ent[4]%*%pes[4])
-
 
 
 #### Neural network
 
 
 
-neural = function(){
+neural = function(apr){
   e_t = 1
   while(e_t !=0){
     e_t = 0
     for (i in 1:length(s)){
+      
       s_cal = step(ent[i, ]%*%pes)
-      
-      
       e = abs(s[i] - s_cal)
       e_t = e_t + e
       
@@ -75,7 +62,7 @@ neural = function(){
 
 
 
-neural()
+neural(0.1)
 
 
 
