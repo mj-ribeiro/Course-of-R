@@ -23,7 +23,8 @@ colnames(ibov)= c('ibov')
 
 
 ibov = ibov[is.na(ibov)==F]
-data = index(ibov)
+
+#data = index(ibov)
 
 
 
@@ -35,8 +36,37 @@ data = index(ibov)
 
 ret = diff(log(ibov))
 colnames(ret) = c('ret')
-plot(ret)
 
+ret = ret[is.na(ret)==F]  # Drop na to work
+
+# plot ret
+
+par(mfrow=c(3,1))
+plot(ret)
+acf(ret)   # There isn't autocorrelation in returns. So isn't possible predict ret
+pacf(ret)
+
+
+# plot ret^2
+
+par(mfrow=c(3,1))
+plot(ret^2)
+acf(ret^2)   # In squares of returns there is autocorrelation  
+pacf(ret^2)
+
+
+library(moments)
+
+skewness(ret)  # the tail of left side is greater than tail of right side becase > 0
+
+kurtosis(ret)  # distribution of ret is leptokurtic  because > 3
+
+
+# histogram
+
+
+par(mfrow=c(1,1))
+hist(ret, breaks = 45, col = 'lightgreen')
 
 
 #--------- Descriptive stats
@@ -66,7 +96,6 @@ for (i in 1:5) {
   print(ArchTest(x = ret, lags = i))
 }
 
-ret = ret[is.na(ret)==F]  # Drop na to work
 
 
 data = index(ret)
