@@ -52,7 +52,7 @@ moments = x %>% mom
 
 moments = moments %>% round(5)
 
-cat('\033[1;031mknitr::')
+cat('\033[1;031m')
 knitr:: kable(moments)
 
 
@@ -102,7 +102,7 @@ ret %>% hist(breaks=35, col = 'lightblue', probability = T)
 #---- Using propagate library
 
 
-install.packages('propagate')
+
 library(propagate)
 
 fit <- as.vector(ret) %>% fitDistr
@@ -139,8 +139,9 @@ cumul = function(k, z){
   return(c)
 }
 
-cumul(-1, 1)
+cumul(-0.6, -0.1231)
 
+quantile(ret, 0.05)
 
 
 ks.test(ret, 'plogis')
