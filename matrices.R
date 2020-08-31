@@ -3,6 +3,7 @@ d = seq(1, 20, 1)
 
 A = matrix(d, 4, 5)
 
+
 A = matrix(d, 4, 5, byrow = TRUE)
 
 
